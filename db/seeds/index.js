@@ -1,6 +1,6 @@
 const { UnavailableForLegalReasons } = require('http-errors')
 const db = require('../database')
-const campground = require('../models/campground')
+const campground = require('../models/campgroundsModel')
 const cities = require('./cities')
 const { places, descriptors } = require('./seedHelpers')
 const mongoose = require('mongoose')
@@ -22,9 +22,13 @@ const seedDB = async () => {
     // console.log('here i am')
     for (let i = 0; i < 50; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
+        const randPrice = Math.floor(Math.random() * 20) + 10;
         const camp = new campground({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
-            title: `${descriptors[sample(descriptors)]} ${places[sample(places)]}`
+            title: `${descriptors[sample(descriptors)]} ${places[sample(places)]}`,
+            image: 'https://source.unsplash.com/collection/429524',
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, laborum quod! Accusantium quidem facilis corrupti nesciunt minus, quasi ratione iste, libero maiores cupiditate at nam, voluptatem harum laudantium labore voluptatibus.',
+            price: randPrice
         })
         await camp.save()
     }
