@@ -1,13 +1,50 @@
-<%layout('layout/boilerplate')%>
-<h1>Add a new campground</h1>
-<form action="/campgrounds/<%=id%>" method="POST">
-    <label for="title">Enter the title</label>
-    <input type="text" id='title' name='title' value='<%=title %> '>
+<%layout('layout/boilerplate') %>
 
-    <label for="city">Enter the city</label>
-    <input type="text" name="city" id="city" value="<%=city%> ">
-    <label for="state">Enter the state</label>
-    <input type="text" name="state" id="state" value="<%=state%> ">
-    <button type="submit"> Submit </button>
-</form>
-<a href="/campgrounds/<%=id%>">Cancel and Quit</a>
+<div class="row">
+    <h1 class="text-center">Edit Campground</h1>
+    <div class="col-6 offset-3">
+        <form action="/campgrounds/<%=id%>" method="POST">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="title-sign">Title</span>
+                <input type="text" class="form-control" id="title" name="title" value="<%=title%>"
+                    aria-describedat="title-sign">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="city-sign">City</span>
+                <input type="text" class="form-control" id="city" name="city" value="<%=city%>"
+                    aria-describedat="city-sign">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="state-sign">State</span>
+                <input type="text" class="form-control" id="state" name="state" value="<%=state%>"
+                    aria-describedat="state-sign">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="image-sign">Image URL</span>
+                <input type="text" class="form-control" id="image" name="image" value="<%=image%>"
+                    aria-describedat="image-sign">
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="price-sign">Price $</span>
+                <input type="text" class="form-control" id="price" name="price" value="<%=price%>"
+                    aria-describedat="price-sign">
+            </div>
+            <!-- </div> -->
+            <div class="input-group mb-3">
+                <span class="input-group-text col-3" id="description-sign">Description $</span>
+                <!-- <label for="description">Description</label> -->
+                <textarea name="description" id="description" class="text-control col-9" type='text'
+                    aria-describedat="description-sign"><%=description%></textarea>
+            </div>
+            <!-- <div class="form-group">
+
+
+    </div> -->
+            <div class="mt-4 mb-5">
+                <button class='btn btn-info' type="submit"> Update Campground </button>
+                <a href="/campgrounds/<%=id%>" class="btn btn-danger">Cancel and Quit</a>
+            </div>
+        </form>
+    </div>
+</div>

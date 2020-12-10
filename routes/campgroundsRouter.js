@@ -28,14 +28,20 @@ router.get('/:id/edit', async (req, res, next) => {
   let [city, state] = campground.location.split(',')
   city = city.trim()
   state = state.trim()
-  res.render('campgrounds/edit', { title, city, state, id })
+  const image = campground.image
+  const description = campground.description
+  const price = campground.price
+  res.render('campgrounds/edit', { title, city, state, image, description, price, id })
 })
 
 router.post('/', async (req, res, next) => {
-  const { title, city, state } = req.body;
+  const { title, city, state, price, image, description } = req.body;
   const campground = new campgroundsModel({
     title: title,
-    location: `${city}, ${state}`
+    price: parseInt(price),
+    location: `${city}, ${state}`,
+    image: image,
+    description: description
   })
   await campground.save()
   res.redirect('/campgrounds');
@@ -50,13 +56,10 @@ router.get('/:id/delete', async (req, res, next) => {
 })
 
 router.post('/:id', async (req, res, next) => {
-  // console.log(req.params)
   const { id } = req.params;
-  // console.log(`hi i am id ${id}`)
   const campground = await campgroundsModel.findById(id)
-  // console.log(campground)
-  const { title, city, state } = req.body;
-  await campgroundsModel.findByIdAndUpdate(id, { title: title, location: `${city}, ${state}` }, { new: true })
+  const { title, city, state, price, description, image } = req.body;
+  await campgroundsModel.findByIdAndUpdate(id, { title: title, location: `${city}, ${state}`, price: price, description: description, image: image }, { new: true })
   res.redirect(`/campgrounds/${id}`)
 })
 
