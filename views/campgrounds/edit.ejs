@@ -3,44 +3,57 @@
 <div class="row">
     <h1 class="text-center">Edit Campground</h1>
     <div class="col-6 offset-3">
-        <form action="/campgrounds/<%=id%>" method="POST">
+        <form action="/campgrounds/<%=id%>" method="POST" class="validated-form" novalidate>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="title-sign">Title</span>
-                <input type="text" class="form-control" id="title" name="title" value="<%=title%>"
-                    aria-describedat="title-sign">
+                <input class='form-control' type="text" id='title' name='title' value="<%=title%>"
+                    aria-describedat='title-sign' required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="city-sign">City</span>
                 <input type="text" class="form-control" id="city" name="city" value="<%=city%>"
-                    aria-describedat="city-sign">
+                    aria-describedat="city-sign" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="state-sign">State</span>
                 <input type="text" class="form-control" id="state" name="state" value="<%=state%>"
-                    aria-describedat="state-sign">
+                    aria-describedat="state-sign" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="image-sign">Image URL</span>
                 <input type="text" class="form-control" id="image" name="image" value="<%=image%>"
-                    aria-describedat="image-sign">
+                    aria-describedat="image-sign" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="price-sign">Price $</span>
                 <input type="text" class="form-control" id="price" name="price" value="<%=price%>"
-                    aria-describedat="price-sign">
+                    aria-describedat="price-sign" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
-            <!-- </div> -->
             <div class="input-group mb-3">
-                <span class="input-group-text col-3" id="description-sign">Description $</span>
-                <!-- <label for="description">Description</label> -->
-                <textarea name="description" id="description" class="text-control col-9" type='text'
+                <span class="input-group-text col-3" id="description-sign">Description</span>
+                <textarea name="description" id="description" required class="form-control" type='text'
                     aria-describedat="description-sign"><%=description%></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
-            <!-- <div class="form-group">
 
-
-    </div> -->
             <div class="mt-4 mb-5">
                 <button class='btn btn-info' type="submit"> Update Campground </button>
                 <a href="/campgrounds/<%=id%>" class="btn btn-danger">Cancel and Quit</a>
