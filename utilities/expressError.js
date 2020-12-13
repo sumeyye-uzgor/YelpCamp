@@ -1,4 +1,4 @@
-const { model } = require("../db/models/campgroundsModel");
+// const { model } = require("../db/models/campgroundsModel");
 
 class ExpressError extends Error {
     constructor(message, status) {

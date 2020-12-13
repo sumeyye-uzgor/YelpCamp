@@ -2,7 +2,8 @@ var express = require('express');
 const { findByIdAndDelete } = require('../db/models/campgroundsModel');
 const campgroundsModel = require('../db/models/campgroundsModel');
 var router = express.Router();
-const catchAsync = require('../utilities/catchAsync')
+const catchAsync = require('../utilities/catchAsync');
+const ExpressError = require('../utilities/expressError');
 
 /* GET users listing. */
 router.get('/', catchAsync(async (req, res, next) => {
@@ -37,6 +38,9 @@ router.get('/:id/edit', catchAsync(async (req, res, next) => {
 
 router.post('/', catchAsync(async (req, res, next) => {
   const { title, city, state, price, image, description } = req.body;
+  if (!title || !city || !state || !price || !image || !description) {
+    throw new ExpressError('Invaid Form Data', 400)
+  }
   const campground = new campgroundsModel({
     title: title,
     price: parseInt(price),
@@ -46,7 +50,7 @@ router.post('/', catchAsync(async (req, res, next) => {
   })
   await campground.save()
   res.redirect('/campgrounds');
-  // res.send(req.body);
+
 }));
 
 router.get('/:id/delete', catchAsync(async (req, res, next) => {

@@ -16,6 +16,7 @@ const app = express();
 
 //Database connection
 const db = require('./db/database');
+const ExpressError = require('./utilities/expressError');
 db.on('error', console.error.bind(console, 'Connection Error: '))
 db.once('open', () => {
   console.log('Database connected...')
@@ -51,9 +52,12 @@ app.use('/campgrounds', campgroundsRouter);
 //   res.status(err.status || 500);
 //   res.render('error');
 // });
+app.all('*', (req, res, next) => {
+  next(new ExpressError('Page Not Found', 404))
+})
 app.use((err, req, res, next) => {
-  res.send('Oh boy sth went wrong!!...')
-  console.log('oh boy sth went wrong!!...')
+  const { status = 600, message = 'this is an emergancy error' } = err;
+  res.status(status).send(message)
 })
 
 module.exports = app;
