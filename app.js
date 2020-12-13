@@ -56,8 +56,9 @@ app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404))
 })
 app.use((err, req, res, next) => {
-  const { status = 600, message = 'this is an emergancy error' } = err;
-  res.status(status).send(message)
+  const { status = 500 } = err;
+  if (!err.message) err.message = 'this is an emergancy error'
+  res.status(status).render('error', { err })
 })
 
 module.exports = app;
