@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const ejsMate = require('ejs-mate');
+// const ejs = require('ejs ')
 
 const indexRouter = require('./routes/index');
 const campgroundsRouter = require('./routes/campgroundsRouter');
@@ -18,6 +20,7 @@ db.once('open', () => {
 })
 
 // view engine setup
+app.engine('ejs', ejsMate)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

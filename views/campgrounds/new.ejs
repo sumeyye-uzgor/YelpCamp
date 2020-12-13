@@ -1,24 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+<%layout('layout/boilerplate') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campground New</title>
-</head>
+<div class="row">
+    <h1 class="text-center">New Campground</h1>
+    <div class="col-6 offset-3">
+        <form action="/campgrounds" method="POST">
+            <div class="my-3">
+                <input class='form-control' type="text" id='title' name='title' placeholder="Campground Title">
+            </div>
+            <div class="mb-3">
+                <input class='form-control' type="text" name="city" id="city" placeholder="City">
+            </div>
+            <div class="mb-3">
+                <input class='form-control' type="text" name="state" id="state" placeholder="State">
+            </div>
+            <div class="mb-3">
+                <input class='form-control' type="text" name="image" id="image" placeholder="Image URL">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="price-sign">$</span>
+                <input type="text" class="form-control" id="price" name="price" placeholder="price"
+                    aria-describedat="price-sign">
+            </div>
+            <!-- </div> -->
+            <div class="form-group">
+                <!-- <label class='form-label' for="description">Enter the description</label> -->
+                <textarea name="description" id="description" class="text-control col-12" type='text'
+                    placeholder="Description"></textarea>
 
-<body>
-    <h1>Add a new campground</h1>
-    <form action="/campgrounds" method="POST">
-        <label for="title">Enter the title</label>
-        <input type="text" id='title' name='title'>
-        <label for="city">Enter the city</label>
-        <input type="text" name="city" id="city">
-        <label for="state">Enter the state</label>
-        <input type="text" name="state" id="state">
-        <button type="submit"> Submit </button>
-    </form>
-    <a href="/campgrounds">Cancel and Quit</a>
-</body>
-
-</html>
+            </div>
+            <div class="mt-4 mb-5">
+                <button class='btn btn-success' type="submit"> Add Campground </button>
+                <a href="/campgrounds" class="btn btn-danger">Cancel and Quit</a>
+            </div>
+        </form>
+    </div>
+</div>
