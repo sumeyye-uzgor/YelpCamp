@@ -6,6 +6,8 @@ const logger = require('morgan');
 const ejsMate = require('ejs-mate');
 // const ejs = require('ejs ')
 
+const expressError = require('./utilities/expressError')
+
 const indexRouter = require('./routes/index');
 const campgroundsRouter = require('./routes/campgroundsRouter');
 // const campgroundsIdRouter = require('./routes/campgroundsIdRouter')
@@ -51,6 +53,7 @@ app.use('/campgrounds', campgroundsRouter);
 // });
 app.use((err, req, res, next) => {
   res.send('Oh boy sth went wrong!!...')
+  console.log('oh boy sth went wrong!!...')
 })
 
 module.exports = app;
