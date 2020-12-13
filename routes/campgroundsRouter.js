@@ -35,17 +35,22 @@ router.get('/:id/edit', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  const { title, city, state, price, image, description } = req.body;
-  const campground = new campgroundsModel({
-    title: title,
-    price: parseInt(price),
-    location: `${city}, ${state}`,
-    image: image,
-    description: description
-  })
-  await campground.save()
-  res.redirect('/campgrounds');
-  // res.send(req.body);
+  try {
+    const { title, city, state, price, image, description } = req.body;
+    const campground = new campgroundsModel({
+      title: title,
+      price: parseInt(price),
+      location: `${city}, ${state}`,
+      image: image,
+      description: description
+    })
+    await campground.save()
+    res.redirect('/campgrounds');
+    // res.send(req.body);
+  }
+  catch (err) {
+    next(err)
+  }
 })
 
 router.get('/:id/delete', async (req, res, next) => {
